@@ -15,19 +15,17 @@ public class Fecha {
 		 * 
 		 * (3) - numero de semanas completas (lunes a domingo) entre fechas
 		 * 
-		 * Validar las fechas antes de empezar
 		 */
 
-		// Hay que restar 1 numero al mes!!
-
-		// excepciones: en modo LENIN genera una excepcion
-
-		Calendar fecha1 = new GregorianCalendar();
-		Calendar fecha2 = new GregorianCalendar();
+		GregorianCalendar fecha1 = new GregorianCalendar();
+		GregorianCalendar fecha2 = new GregorianCalendar();
 
 		float n_years = 0; // Resultado 1
 		int n_days = 0; // Resultado 2
 		float n_weeks = 0; // Resultado 3
+
+		int diaAux, mesAux, anhoAux;
+		int diaSemana;
 
 		// Comprobamos el numero de parametros introducidos
 		// if (args.length < 5) {
@@ -36,47 +34,62 @@ public class Fecha {
 		// }
 
 		/*
-		 * fecha1.set(Calendar.MONTH, Integer.parseInt(args[1]));
-		 * fecha1.add(Calendar.MONTH, -1);
+		 * // Recogemos fecha1 de linea de parametros diaAux =
+		 * Integer.parseInt(args[0]); mesAux = Integer.parseInt(args[1]); if
+		 * (mesAux == 1) { mesAux = 11; } else { mesAux--; } anhoAux =
+		 * Integer.parseInt(args[2]); if (validarFecha(diaAux, mesAux, anhoAux)
+		 * == 1) { // Validacion System.exit(0); }
+		 * fecha1.set(Calendar.DAY_OF_MONTH, diaAux); // Guardamos si es
+		 * correcta fecha1.set(Calendar.MONTH, mesAux);
+		 * fecha1.set(Calendar.YEAR, anhoAux);
 		 * 
-		 * fecha1.set(Calendar.DAY_OF_MONTH, Integer.parseInt(args[0]));
-		 * fecha1.set(Calendar.YEAR,Integer.parseInt(args[2]));
-		 * 
-		 * //FALTA validar fecha
-		 * 
-		 * fecha2.set(Calendar.MONTH,Integer.parseInt(args[4]));
-		 * fecha2.add(Calendar.MONTH, -1);
-		 * 
-		 * fecha2.set(Calendar.DAY_OF_MONTH, Integer.parseInt(args[3]));
-		 * fecha2.set(Calendar.YEAR, Integer.parseInt(args[5]));
-		 * 
-		 * //FALTA validar fecha
+		 * // Recogemos fecha2 de linea de parametros diaAux =
+		 * Integer.parseInt(args[3]); mesAux = Integer.parseInt(args[4]); if
+		 * (mesAux == 1) { mesAux = 11; } else { mesAux--; } anhoAux =
+		 * Integer.parseInt(args[5]); if (validarFecha(diaAux, mesAux, anhoAux)
+		 * == 1) { // Validacion System.exit(0); }
+		 * fecha2.set(Calendar.DAY_OF_MONTH, diaAux); // Guardamos si es
+		 * correcta fecha2.set(Calendar.MONTH, mesAux);
+		 * fecha2.set(Calendar.YEAR, anhoAux);
 		 */
 
+		//
+		//
 		// TEMPORAL para comprobar datos sin linea de comandos
+		diaAux = 14;
+		mesAux = 0;
+		anhoAux = 2015;
 
-		fecha2.set(Calendar.DAY_OF_MONTH, 8);
-		fecha2.set(Calendar.MONTH, 1);
-		fecha2.set(Calendar.YEAR, 2015);
-
-		try {
-			fecha1.set(Calendar.DAY_OF_MONTH, 2);
-			fecha1.set(Calendar.MONTH, 1);
-			fecha1.set(Calendar.YEAR, 2015);
-		} catch (ArrayIndexOutOfBoundsException s) {
-			System.out.println("ERROR");
+		if (validarFecha(diaAux, mesAux, anhoAux) == 1) {
+			System.exit(0);
 		}
+		fecha1.set(Calendar.DAY_OF_MONTH, diaAux);
+		fecha1.set(Calendar.MONTH, mesAux);
+		fecha1.set(Calendar.YEAR, anhoAux);
+
+		diaAux = 20;
+		mesAux = 5;
+		anhoAux = 2015;
+		if (validarFecha(diaAux, mesAux, anhoAux) == 1) {
+			System.exit(0);
+		}
+		fecha2.set(Calendar.DAY_OF_MONTH, diaAux);
+		fecha2.set(Calendar.MONTH, mesAux);
+		fecha2.set(Calendar.YEAR, anhoAux);
+		//
+		//
+		//
 
 		// Compruebo si fecha1 posterior a fecha2
 		int ordenFechas = fecha1.compareTo(fecha2);
 		if (ordenFechas > 0) {
-			Calendar fechaAux = new GregorianCalendar();
+			GregorianCalendar fechaAux = new GregorianCalendar();
 			fechaAux = fecha1;
 			fecha1 = fecha2;
 			fecha2 = fechaAux;
-		}
+		} // fecha1 > fecha2 siempre
 
-		// Muestro datos por pantalla
+		// Muestro fechas por pantalla
 		System.out.println(fecha1.getTime());
 		System.out.println(fecha2.getTime());
 
@@ -84,9 +97,11 @@ public class Fecha {
 		if (fecha1.equals(fecha2)) {
 			n_years = 0;
 			n_weeks = 0;
-			int dia = fecha1.get(Calendar.DAY_OF_WEEK);
-			if (!(dia == Calendar.SATURDAY || dia == Calendar.SUNDAY))
+			diaSemana = fecha1.get(Calendar.DAY_OF_WEEK);
+			if (!(diaSemana == Calendar.SATURDAY || diaSemana == Calendar.SUNDAY))
 				n_days = 1;
+
+			// Resultado
 			System.out.println("\nEntre las dos fechas hay: ");
 			System.out.println(n_years + " Años");
 			System.out.println(n_days + " Dias hábiles");
@@ -101,7 +116,6 @@ public class Fecha {
 		n_years /= divisor;
 
 		// 2 - Número de dias habiles
-		int diaSemana;
 		int i; // dias de diferencia entre fechas para no perder fecha original
 		for (i = 0;; i++) {
 			fecha1.add(Calendar.DAY_OF_MONTH, i);
@@ -145,5 +159,21 @@ public class Fecha {
 		System.out.println(n_days + " Dias hábiles");
 		System.out.printf("%.0f Semanas completas", n_weeks);
 		System.exit(0);
+	}
+
+	public static int validarFecha(int dia, int mes, int anho) {
+		Calendar fecha = new GregorianCalendar();
+		fecha.setLenient(false);
+
+		try {
+			fecha.set(Calendar.DAY_OF_MONTH, dia);
+			fecha.set(Calendar.MONTH, mes);
+			fecha.set(Calendar.YEAR, anho);
+			fecha.getTime();
+		} catch (IllegalArgumentException excepcion) {
+			System.out.println("ERROR: fecha introducida incorrecta");
+			return 1;
+		}
+		return 0;
 	}
 }

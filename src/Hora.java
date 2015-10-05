@@ -14,8 +14,12 @@ public class Hora {
 		 * ¿Las horas siempre pertenecen al mismo dia?
 		 */
 
-		Calendar hora1 = new GregorianCalendar();
-		Calendar hora2 = new GregorianCalendar();
+		GregorianCalendar hora1 = new GregorianCalendar();
+		GregorianCalendar hora2 = new GregorianCalendar();
+
+		float n_millisec;
+		float divisor;
+		float hora, min, sec, dec;
 
 		/*
 		 * hora1.set(Calendar.HOUR, Integer.parseInt(args[0]));
@@ -32,12 +36,12 @@ public class Hora {
 		 * // FALTA validar fecha
 		 */
 		hora1.set(Calendar.HOUR, 1);
-		hora1.set(Calendar.MINUTE, 8);
-		hora1.set(Calendar.SECOND, 15);
-		hora1.set(Calendar.MILLISECOND, 6);
-		hora2.set(Calendar.HOUR, 16);
-		hora2.set(Calendar.MINUTE, 32);
-		hora2.set(Calendar.SECOND, 42);
+		hora1.set(Calendar.MINUTE, 1);
+		hora1.set(Calendar.SECOND, 1);
+		hora1.set(Calendar.MILLISECOND, 1);
+		hora2.set(Calendar.HOUR, 5);
+		hora2.set(Calendar.MINUTE, 1);
+		hora2.set(Calendar.SECOND, 3);
 		hora2.set(Calendar.MILLISECOND, 1);
 
 		/*
@@ -47,5 +51,32 @@ public class Hora {
 		System.out.println(hora1.getTime());
 		System.out.println(hora2.getTime());
 
+		long dif_weeks = (hora2.getTimeInMillis() - hora1.getTimeInMillis());
+		n_millisec = new Float(dif_weeks); // convierto en float
+		System.out.println(n_millisec);
+		divisor = (float) 3.6E6;// (1000*3600) milisec a horas
+		hora = (float) Math.floor(n_millisec / divisor);
+		n_millisec %= divisor;
+		System.out.println(n_millisec);
+
+		divisor = 3600;
+		min = (float) Math.floor(n_millisec / divisor);
+		n_millisec %= divisor;
+
+		divisor = 1000;
+		sec = (float) Math.floor(n_millisec / divisor);
+		n_millisec %= divisor;
+
+		divisor = 100;
+		dec = n_millisec;
+
+		System.out.printf("%.0f:%.0f:%.0f-%.0f", hora, min, sec, dec);
+
+		// Calculamos horas
+
+	}
+
+	public static int validarHora(int hora, int min, int sec, int dec) {
+		return 0;
 	}
 }
