@@ -17,8 +17,8 @@ public class Fecha {
 		 * 
 		 */
 
-		GregorianCalendar fecha1 = new GregorianCalendar();
-		GregorianCalendar fecha2 = new GregorianCalendar();
+		Calendar fecha1 = new GregorianCalendar();
+		Calendar fecha2 = new GregorianCalendar();
 
 		float n_years = 0; // Resultado 1
 		int n_days = 0; // Resultado 2
@@ -53,9 +53,7 @@ public class Fecha {
 		 * fecha2.set(Calendar.YEAR, anhoAux);
 		 */
 
-		//
-		//
-		// TEMPORAL para comprobar datos sin linea de comandos
+		// Pruebas sin linea de comandos
 		diaAux = 14;
 		mesAux = 0;
 		anhoAux = 2015;
@@ -76,14 +74,12 @@ public class Fecha {
 		fecha2.set(Calendar.DAY_OF_MONTH, diaAux);
 		fecha2.set(Calendar.MONTH, mesAux);
 		fecha2.set(Calendar.YEAR, anhoAux);
-		//
-		//
-		//
+		// FIN de prueba sin linea de comandos
 
 		// Compruebo si fecha1 posterior a fecha2
 		int ordenFechas = fecha1.compareTo(fecha2);
 		if (ordenFechas > 0) {
-			GregorianCalendar fechaAux = new GregorianCalendar();
+			Calendar fechaAux = new GregorianCalendar();
 			fechaAux = fecha1;
 			fecha1 = fecha2;
 			fecha2 = fechaAux;
