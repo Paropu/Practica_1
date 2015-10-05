@@ -79,7 +79,7 @@ public class Hora {
 		long dif_weeks = (hora2.getTimeInMillis() - hora1.getTimeInMillis());
 		n_millisec = new Float(dif_weeks); // convierto en float
 		divisor = (float) 3.6E6;// (1000*3600) milisec a horas
-		hora = (n_millisec / divisor);
+		hora = (float) Math.floor(n_millisec / divisor);
 		n_millisec %= divisor;
 
 		divisor = 60000;
