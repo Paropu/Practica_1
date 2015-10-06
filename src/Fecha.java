@@ -34,23 +34,9 @@ public class Fecha {
 		// }
 
 		/*
-		 * // Recogemos fecha1 de linea de parametros diaAux =
-		 * Integer.parseInt(args[0]); mesAux = Integer.parseInt(args[1]); if
-		 * (mesAux == 1) { mesAux = 11; } else { mesAux--; } anhoAux =
-		 * Integer.parseInt(args[2]); if (validarFecha(diaAux, mesAux, anhoAux)
-		 * == 1) { // Validacion System.exit(0); }
-		 * fecha1.set(Calendar.DAY_OF_MONTH, diaAux); // Guardamos si es
-		 * correcta fecha1.set(Calendar.MONTH, mesAux);
-		 * fecha1.set(Calendar.YEAR, anhoAux);
+		 * // Recogemos fecha1 de linea de parametros diaAux = Integer.parseInt(args[0]); mesAux = Integer.parseInt(args[1]); if (mesAux == 1) { mesAux = 11; } else { mesAux--; } anhoAux = Integer.parseInt(args[2]); if (validarFecha(diaAux, mesAux, anhoAux) == 1) { // Validacion System.exit(0); } fecha1.set(Calendar.DAY_OF_MONTH, diaAux); // Guardamos si es correcta fecha1.set(Calendar.MONTH, mesAux); fecha1.set(Calendar.YEAR, anhoAux);
 		 * 
-		 * // Recogemos fecha2 de linea de parametros diaAux =
-		 * Integer.parseInt(args[3]); mesAux = Integer.parseInt(args[4]); if
-		 * (mesAux == 1) { mesAux = 11; } else { mesAux--; } anhoAux =
-		 * Integer.parseInt(args[5]); if (validarFecha(diaAux, mesAux, anhoAux)
-		 * == 1) { // Validacion System.exit(0); }
-		 * fecha2.set(Calendar.DAY_OF_MONTH, diaAux); // Guardamos si es
-		 * correcta fecha2.set(Calendar.MONTH, mesAux);
-		 * fecha2.set(Calendar.YEAR, anhoAux);
+		 * // Recogemos fecha2 de linea de parametros diaAux = Integer.parseInt(args[3]); mesAux = Integer.parseInt(args[4]); if (mesAux == 1) { mesAux = 11; } else { mesAux--; } anhoAux = Integer.parseInt(args[5]); if (validarFecha(diaAux, mesAux, anhoAux) == 1) { // Validacion System.exit(0); } fecha2.set(Calendar.DAY_OF_MONTH, diaAux); // Guardamos si es correcta fecha2.set(Calendar.MONTH, mesAux); fecha2.set(Calendar.YEAR, anhoAux);
 		 */
 
 		// Pruebas sin linea de comandos
@@ -86,8 +72,8 @@ public class Fecha {
 		} // fecha1 > fecha2 siempre
 
 		// Muestro fechas por pantalla
-		System.out.println(fecha1.getTime());
-		System.out.println(fecha2.getTime());
+		// System.out.println(fecha1.getTime());
+		// System.out.println(fecha2.getTime());
 
 		// Compruebo si las fechas coinciden
 		if (fecha1.equals(fecha2)) {
@@ -98,7 +84,7 @@ public class Fecha {
 				n_days = 1;
 
 			// Resultado
-			System.out.println("\nEntre las dos fechas hay: ");
+			System.out.println("Entre las dos fechas hay: ");
 			System.out.println(n_years + " Años");
 			System.out.println(n_days + " Dias hábiles");
 			System.out.println(n_weeks + " Semanas completas");
@@ -150,7 +136,7 @@ public class Fecha {
 			n_weeks /= divisor; // Paso resultado de milisegundos a semanas
 		}
 		// Resultados
-		System.out.println("\nEntre las dos fechas hay: ");
+		System.out.println("Entre las dos fechas hay: ");
 		System.out.printf("%.1f Años\n", n_years);
 		System.out.println(n_days + " Dias hábiles");
 		System.out.printf("%.0f Semanas completas", n_weeks);
