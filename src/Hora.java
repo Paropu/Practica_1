@@ -10,50 +10,43 @@ public class Hora {
 		 * 
 		 * Tiempo transcurrido entre las dos fechas en formato hh:mm:ss-d
 		 * 
-		 * �Las horas siempre pertenecen al mismo dia? Prueba commit
 		 */
 
 		Calendar hora1 = new GregorianCalendar();
 		Calendar hora2 = new GregorianCalendar();
 
-		float n_millisec;
+		float n_millisec; // Resultado en milisegundos
 		float divisor;
-		float hora, min, sec, dec;
-		int horaAux, minAux, secAux, decAux;
+		float hora, min, sec, dec; // Resultados
 
-		/*
-		 * // Hora1 horaAux = Integer.parseInt(args[0]); minAux = Integer.parseInt(args[1]); secAux = Integer.parseInt(args[2]); decAux = Integer.parseInt(args[3]) * 100; if (validarHora(horaAux, minAux, secAux, decAux) == 1) { System.exit(0); } else { hora1.set(Calendar.HOUR, Integer.parseInt(args[0])); hora1.set(Calendar.MINUTE, Integer.parseInt(args[1])); hora1.set(Calendar.SECOND, Integer.parseInt(args[2])); hora1.set(Calendar.MILLISECOND, (Integer.parseInt(args[3])) * 100); }
-		 * 
-		 * // Hora2 horaAux = Integer.parseInt(args[4]); minAux = Integer.parseInt(args[5]); secAux = Integer.parseInt(args[6]); decAux = Integer.parseInt(args[7]) * 100; if (validarHora(horaAux, minAux, secAux, decAux) == 1) { System.exit(0); } else { hora2.set(Calendar.HOUR, Integer.parseInt(args[4])); hora2.set(Calendar.MINUTE, Integer.parseInt(args[5])); hora2.set(Calendar.SECOND, Integer.parseInt(args[6])); hora2.set(Calendar.MILLISECOND, (Integer.parseInt(args[7])) * 100); }
-		 */
-
-		//
-		// Pruebas sin linea de comandos
-		horaAux = 3;
-		minAux = 5;
-		secAux = 31;
-		decAux = 9;
-		if (validarHora(horaAux, minAux, secAux, decAux) == 1) {
+		if (args.length < 7) {
+			System.out.println("No has introducido suficientes datos");
 			System.exit(0);
-		} else {
-			hora1.set(Calendar.HOUR, horaAux);
-			hora1.set(Calendar.MINUTE, minAux);
-			hora1.set(Calendar.SECOND, secAux);
-			hora1.set(Calendar.MILLISECOND, decAux);
 		}
-		horaAux = 1;
-		minAux = 1;
-		secAux = 1;
-		decAux = 1;
-		if (validarHora(horaAux, minAux, secAux, decAux) == 1) {
+
+		// Hora1
+		if (validarHora(Integer.parseInt(args[0]), Integer.parseInt(args[1]), Integer.parseInt(args[2]),
+				Integer.parseInt(args[3]) * 100) == true) {
 			System.exit(0);
 		} else {
-			hora2.set(Calendar.HOUR, horaAux);
-			hora2.set(Calendar.MINUTE, minAux);
-			hora2.set(Calendar.SECOND, secAux);
-			hora2.set(Calendar.MILLISECOND, decAux);
-		} // FIN de prueba sin linea de comandos
+			hora1.set(Calendar.HOUR, Integer.parseInt(args[0]));
+			hora1.set(Calendar.MINUTE, Integer.parseInt(args[1]));
+			hora1.set(Calendar.SECOND, Integer.parseInt(args[2]));
+			hora1.set(Calendar.MILLISECOND, (Integer.parseInt(args[3])) * 100);
+		}
 
+		// Hora2
+		if (validarHora(Integer.parseInt(args[4]), Integer.parseInt(args[5]), Integer.parseInt(args[6]),
+				Integer.parseInt(args[7]) * 100) == true) {
+			System.exit(0);
+		} else {
+			hora2.set(Calendar.HOUR, Integer.parseInt(args[4]));
+			hora2.set(Calendar.MINUTE, Integer.parseInt(args[5]));
+			hora2.set(Calendar.SECOND, Integer.parseInt(args[6]));
+			hora2.set(Calendar.MILLISECOND, (Integer.parseInt(args[7])) * 100);
+		}
+
+		// Intercambio si hora1 posterior a hora2
 		if ((hora2.getTimeInMillis() - hora1.getTimeInMillis()) < 0) {
 			Calendar fechaAux = new GregorianCalendar();
 			fechaAux = hora1;
@@ -61,26 +54,26 @@ public class Hora {
 			hora2 = fechaAux;
 		}
 
-		// System.out.println(hora1.getTime());
-		// System.out.println(hora2.getTime());
-
+		// Calculo tiempo en milisegundos entre las dos
 		long dif_weeks = (hora2.getTimeInMillis() - hora1.getTimeInMillis());
 		n_millisec = new Float(dif_weeks); // convierto en float
+
 		divisor = (float) 3.6E6;// (1000*3600) milisec a horas
 		hora = (float) Math.floor(n_millisec / divisor);
-		n_millisec %= divisor;
+		n_millisec %= divisor; // Resto
 
-		divisor = 60000;
+		divisor = 60000; // millisec a minutos
 		min = (float) Math.floor(n_millisec / divisor);
-		n_millisec %= divisor;
+		n_millisec %= divisor; // Resto
 
-		divisor = 1000;
+		divisor = 1000; // millisec a segundos
 		sec = (float) Math.floor(n_millisec / divisor);
-		n_millisec %= divisor;
+		n_millisec %= divisor; // Resto
 
 		divisor = 100;
-		dec = n_millisec;
+		dec = (float) Math.floor(n_millisec / divisor);
 
+		// Resultado formateado
 		if (hora < 10) {
 			System.out.printf("0%.0f:", hora);
 		} else {
@@ -98,20 +91,20 @@ public class Hora {
 		}
 	}
 
-	public static int validarHora(int hora, int min, int sec, int dec) {
+	public static boolean validarHora(int hora, int min, int sec, int dec) {
 		Calendar fecha = new GregorianCalendar();
 		fecha.setLenient(false);
+		fecha.set(Calendar.HOUR, hora);
+		fecha.set(Calendar.MINUTE, min);
+		fecha.set(Calendar.SECOND, sec);
+		fecha.set(Calendar.MILLISECOND, dec);
 
 		try {
-			fecha.set(Calendar.HOUR, hora);
-			fecha.set(Calendar.MINUTE, min);
-			fecha.set(Calendar.SECOND, sec);
-			fecha.set(Calendar.MILLISECOND, dec);
 			fecha.getTime();
 		} catch (IllegalArgumentException excepcion) {
 			System.out.println("ERROR: hora introducida incorrecta");
-			return 1;
+			return true;
 		}
-		return 0;
+		return false;
 	}
 }
