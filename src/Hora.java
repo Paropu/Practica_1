@@ -11,7 +11,7 @@ public class Hora {
 		 * 
 		 * Tiempo transcurrido entre las dos fechas en formato hh:mm:ss-d
 		 * 
-		 * ¿Las horas siempre pertenecen al mismo dia?
+		 * ï¿½Las horas siempre pertenecen al mismo dia? Prueba commit
 		 */
 
 		Calendar hora1 = new GregorianCalendar();
