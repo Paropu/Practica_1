@@ -47,7 +47,7 @@ public class Hora {
 		}
 
 		// Intercambio si hora1 posterior a hora2
-		if ((hora2.getTimeInMillis() - hora1.getTimeInMillis()) < 0) {
+		if (hora1.compareTo(hora2) > 0) {
 			Calendar fechaAux = new GregorianCalendar();
 			fechaAux = hora1;
 			hora1 = hora2;
