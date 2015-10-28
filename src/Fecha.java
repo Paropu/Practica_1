@@ -8,9 +8,9 @@ public class Fecha {
 		/*
 		 * Introduce dos fechas por linea de comandos (dia mes anho) y devuelve:
 		 * 
-		 * (1) - numero de años (con un decimal) entre fechas
+		 * (1) - numero de anhos (con un decimal) entre fechas
 		 * 
-		 * (2) - numero de dias hábiles (lunes a viernes) entre fechas
+		 * (2) - numero de dias habiles (lunes a viernes) entre fechas
 		 * 
 		 * (3) - numero de semanas completas (lunes a domingo) entre fechas
 		 * 
@@ -53,7 +53,7 @@ public class Fecha {
 			fecha2 = fechaAux;
 		} // fecha1 > fecha2 siempre
 
-		// 1 - Años
+		// 1 - Anhos
 		while (anho1 < anho2) {
 			n_years++;
 			anho1++;
@@ -68,7 +68,7 @@ public class Fecha {
 		}
 		n_years += (float) dif_dias / 365;
 
-		// 2 - Número de dias habiles
+		// 2 - Nï¿½mero de dias habiles
 		int anhoAux = fecha1.get(Calendar.YEAR); // Guardo variables
 		int mesAux = fecha1.get(Calendar.MONTH);
 		int diaAux = fecha1.get(Calendar.DAY_OF_MONTH);
@@ -87,7 +87,7 @@ public class Fecha {
 		}
 		fecha1.set(anhoAux, mesAux, diaAux); // Recupero la fecha original
 
-		// 3 - Número de semanas completas
+		// 3 - Nï¿½mero de semanas completas
 		// Paso la primera fecha al primer lunes posterior
 		while (fecha1.get(Calendar.DAY_OF_WEEK) != Calendar.MONDAY) {
 			fecha1.add(Calendar.DAY_OF_MONTH, 1);
@@ -104,8 +104,8 @@ public class Fecha {
 
 		// Resultados
 		System.out.println("Entre las dos fechas hay: ");
-		System.out.printf("%.1f Años\n", n_years);
-		System.out.println(n_days + " Dias hábiles");
+		System.out.printf("%.1f Anhos\n", n_years);
+		System.out.println(n_days + " Dias habiles");
 		System.out.printf("%.0f Semanas completas", n_weeks);
 		System.exit(0);
 	}

@@ -85,7 +85,7 @@ public class Hora {
 			System.out.printf("%.0f:", min);
 		}
 		if (sec < 10) {
-			System.out.printf("0%.0f-", sec, dec);
+			System.out.printf("0%.0f-%.0f", sec, dec);
 		} else {
 			System.out.printf("%.0f-%.0f", sec, dec);
 		}
@@ -94,7 +94,8 @@ public class Hora {
 	public static boolean validarHora(int hora, int min, int sec, int dec) {
 		Calendar fecha = new GregorianCalendar();
 		fecha.setLenient(false);
-		fecha.set(Calendar.HOUR, hora);
+
+		fecha.set(Calendar.HOUR_OF_DAY, hora);
 		fecha.set(Calendar.MINUTE, min);
 		fecha.set(Calendar.SECOND, sec);
 		fecha.set(Calendar.MILLISECOND, dec);
